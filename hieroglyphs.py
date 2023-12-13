@@ -2,6 +2,7 @@
 import os
 import tkinter as tk
 from tkinter import filedialog
+from tkinter import messagebox
 from PIL import ImageGrab
 from PIL import Image
 import numpy as np
@@ -177,6 +178,11 @@ def load_examples(templates):
 def open_image(templates):
     # Open a file dialog and get the selected file path
     file_path = filedialog.askopenfilename()
+
+    # Check if the selected file is a JPG image
+    if not file_path.lower().endswith('.jpg'):
+        messagebox.showerror("Error", "Selected file is not a JPG image.")
+        return
 
     # Process the selected image
     image = load_and_process_image(file_path)
